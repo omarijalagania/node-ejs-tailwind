@@ -1,9 +1,10 @@
 var express = require("express")
 var router = express.Router()
 
-router.post("/auth", function (req, res, next) {
-  res.send(console.log({ email: req.body.email, password: req.body.password }))
-  res.redirect("/dashboard")
+router.post("/auth", (req, res, next) => {
+  if (req.body.email !== " && req.body.password !== ") {
+    res.redirect("/dashboard")
+  }
 })
 
-exports.auth = router
+module.exports = router
