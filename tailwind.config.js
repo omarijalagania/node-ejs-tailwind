@@ -1,7 +1,9 @@
+const plugin = require("tailwindcss/plugin")
+
 module.exports = {
   content: ["**/*.html", "views/*.ejs", "**/*.css"],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 }
