@@ -1,11 +1,17 @@
 const createError = require("http-errors")
 const express = require("express")
+
+const verifyToken = require("./config/verifyToken")
+
 const path = require("path")
 const cookieParser = require("cookie-parser")
 const logger = require("morgan")
 
+require("dotenv").config()
+
 const indexRouter = require("./routes/index")
 const adminRouter = require("./routes/admin")
+const userAuth = require("./routes/auth")
 
 const app = express()
 
@@ -21,8 +27,8 @@ app.use(express.static(path.join(__dirname, "public")))
 
 //routes
 app.use("/", indexRouter.login)
-app.use("/admin", adminRouter.dashboard)
-app.use("/admin", adminRouter.authUser)
+app.use("/admin", verifyToken, adminRouter.dashboard)
+app.use("/user", userAuth.authUser)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
