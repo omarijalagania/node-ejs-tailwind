@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/styles/style.css" />
     <title>Dashboard</title>
   </head>
-  <body class="h-full">
+  <body class="h-full max-w-full">
     <div>
       <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
       <div class="relative z-40 md:hidden" role="dialog" aria-modal="true">
@@ -47,8 +47,10 @@
             From: "opacity-100"
             To: "opacity-0"
         -->
+
             <div class="absolute top-0 right-0 -mr-12 pt-2">
               <button
+                id="close-button"
                 type="button"
                 class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               >
@@ -295,17 +297,21 @@
             </div>
             <div class="max-w-7xl px-4 sm:px-6 md:px-8">
               <!-- Replace with your content -->
-              <% include includes/stats.ejs %>
+              <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                <div><% include includes/stats.ejs %></div>
+                <div class="pt-5"><% include includes/bar.ejs %></div>
+              </div>
+
               <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center"
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 justify-items-center"
               >
-                <div class="w-96 rounded-lg overflow-hidden py-5">
+                <div class="w-72 rounded-lg overflow-hidden py-5">
                   <% include includes/chart.ejs %>
                 </div>
-                <div class="w-96 rounded-lg overflow-hidden py-5">
+                <div class="w-72 rounded-lg overflow-hidden py-5">
                   <% include includes/radar.ejs %>
                 </div>
-                <div class="w-96 rounded-lg overflow-hidden py-5">
+                <div class="w-72 rounded-lg overflow-hidden py-5">
                   <% include includes/doughnut.ejs %>
                 </div>
               </div>
