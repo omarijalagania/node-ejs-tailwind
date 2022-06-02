@@ -6,9 +6,5 @@ router.get("/", function (req, res, next) {
   res.render("login")
 })
 
-router.get("/dashboard", function (req, res, next) {
-  res.render("dashboard")
-})
-
 exports.login = router
 exports.dashboard = router

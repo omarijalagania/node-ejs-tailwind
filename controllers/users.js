@@ -5,7 +5,6 @@ const { validateLogin } = require("../schema/validation")
 
 exports.authUser = async (req, res) => {
   const { error } = validateLogin(req.body)
-
   //if error, return 400 with error message
   if (error) return res.status(400).send(error.details[0].message)
 
@@ -24,5 +23,8 @@ exports.authUser = async (req, res) => {
     process.env.TOKEN_SECRET,
   )
 
-  res.redirect(`/admin/dashboard?token=${token}`)
+  if (token) {
+    res.cookie("x-access-token", token)
+    res.redirect(`/admin/dashboard`)
+  }
 }
